@@ -7,5 +7,7 @@ import java.time.LocalDate;
 public class UpdateInvoice {
     private int id;
     private LocalDate createDate;
+    private int rentalId;
+
 
 }

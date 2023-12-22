@@ -1,5 +1,7 @@
 package com.example.Server.Dtos.Responses.Rental;
 
+import com.example.Server.Dtos.Responses.Car.GetByIdCar;
+import com.example.Server.Dtos.Responses.User.GetByIdUser;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,4 +15,6 @@ public class GetAllRental {
     private LocalDate startDate;
     private int startKilometer;
     private Double totalPrice;
+    private GetByIdCar car;
+    private GetByIdUser user;
 }

@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class AddModel {
     private String name;
+    private int brandId;
 }

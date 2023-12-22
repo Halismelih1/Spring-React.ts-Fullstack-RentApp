@@ -11,4 +11,7 @@ public class AddCar {
     private String plate;
     private LocalDate year;
     private Double dailyPrice;
+    private int colorId;
+    private int modelId;
+
 }

@@ -12,5 +12,7 @@ public class AddRental {
     private LocalDate startDate;
     private int startKilometer;
     private Double totalPrice;
+    private int carId;
+    private int userId;
 }
 

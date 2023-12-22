@@ -7,4 +7,5 @@ import java.time.LocalDate;
 @Data
 public class AddInvoice {
     private LocalDate createDate;
+    private int rentalId;
 }
