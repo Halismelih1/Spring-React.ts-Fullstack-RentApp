@@ -8,9 +8,9 @@ import com.example.Server.Dtos.Responses.Rental.GetByIdRental;
 import java.util.List;
 
 public interface RentalService {
-    public void add(AddRental request);
-    public void update(UpdateRental request,int id);
-    public void delete(int id);
-    public List<GetAllRental> getAll();
-    public GetByIdRental getById(int id);
+     void add(AddRental request);
+     void update(UpdateRental request,int id);
+     void delete(int id);
+     List<GetAllRental> getAll();
+     GetByIdRental getById(int id);
 }

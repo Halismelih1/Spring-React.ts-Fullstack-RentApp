@@ -11,6 +11,8 @@ import com.example.Server.Repositories.BrandRepository;
 import com.example.Server.Services.Abstracts.BrandService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -22,14 +24,14 @@ public class BrandManager implements BrandService {
     private final ModelMapperService modelMapperService;
 
     @Override
-    public void add(AddBrand request) {
+    public void add(@RequestBody AddBrand request) {
 
         Brand brand = modelMapperService.dtoToEntity().map(request,Brand.class);
         brandRepository.save(brand);
     }
 
     @Override
-    public void update(UpdateBrand request,int id) {
+    public void update(@RequestBody UpdateBrand request, @PathVariable int id) {
 
         Brand brand = brandRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, brand);
@@ -38,7 +40,7 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(@PathVariable int id) {
         brandRepository.deleteById(id);
     }
 
@@ -51,7 +53,7 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public GetByIdBrand getById(int id) {
+    public GetByIdBrand getById(@PathVariable int id) {
         Brand brand = brandRepository.findById(id).orElseThrow();
         GetByIdBrand response = modelMapperService.entityToDto().map(brand, GetByIdBrand.class);
         return response;

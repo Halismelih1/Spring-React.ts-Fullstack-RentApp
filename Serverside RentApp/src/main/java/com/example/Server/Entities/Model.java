@@ -1,5 +1,6 @@
 package com.example.Server.Entities;
 
+import com.example.Server.Dtos.Requests.Brand.AddBrand;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class Model {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @OneToMany(mappedBy = "model")
+    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Car> cars;
 

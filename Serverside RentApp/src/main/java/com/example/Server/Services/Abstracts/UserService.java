@@ -8,9 +8,9 @@ import com.example.Server.Dtos.Responses.User.GetByIdUser;
 import java.util.List;
 
 public interface UserService {
-    public void add(AddUser request);
-    public void update(UpdateUser request,int id);
-    public void delete(int id);
-    public List<GetAllUser> getAll();
-    public GetByIdUser getById(int id);
+     void add(AddUser request);
+     void update(UpdateUser request,int id);
+     void delete(int id);
+     List<GetAllUser> getAll();
+     GetByIdUser getById(int id);
 }

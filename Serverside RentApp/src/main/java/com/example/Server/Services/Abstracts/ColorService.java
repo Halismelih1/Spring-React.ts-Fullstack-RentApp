@@ -8,11 +8,11 @@ import com.example.Server.Dtos.Responses.Color.GetByIdColor;
 import java.util.List;
 
 public interface ColorService {
-    public void add(AddColor request);
-    public void update(UpdateColor request, int id);
-    public void delete(int id);
-    public List<GetAllColor> getAll();
-    public GetByIdColor getById(int id);
+     void add(AddColor request);
+     void update(UpdateColor request, int id);
+     void delete(int id);
+     List<GetAllColor> getAll();
+     GetByIdColor getById(int id);
 
 
 }

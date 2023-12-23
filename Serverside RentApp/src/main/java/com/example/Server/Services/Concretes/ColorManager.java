@@ -11,6 +11,8 @@ import com.example.Server.Services.Abstracts.ColorService;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -22,20 +24,20 @@ public class ColorManager implements ColorService {
     private final ModelMapperService modelMapperService;
 
     @Override
-    public void add(AddColor request) {
+    public void add(@RequestBody AddColor request) {
         Color color = modelMapperService.dtoToEntity().map(request,Color.class);
         colorRepository.save(color);
     }
 
     @Override
-    public void update(UpdateColor request, int id) {
+    public void update(@RequestBody UpdateColor request,@PathVariable int id) {
         Color color = colorRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, color);
         colorRepository.save(color);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(@PathVariable int id) {
         colorRepository.deleteById(id);
     }
 
@@ -47,7 +49,7 @@ public class ColorManager implements ColorService {
     }
 
     @Override
-    public GetByIdColor getById(int id) {
+    public GetByIdColor getById(@PathVariable int id) {
         Color color = colorRepository.findById(id).orElseThrow();
         GetByIdColor response = modelMapperService.entityToDto().map(color,GetByIdColor.class);
         return response;

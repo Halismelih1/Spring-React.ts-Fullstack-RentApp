@@ -7,11 +7,11 @@ import com.example.Server.Dtos.Responses.Car.GetByIdCar;
 import java.util.List;
 
 public interface CarService {
-    public void add(AddCar request);
-    public void update(UpdateCar request,int id);
-    public void delete(int id);
-    public List<GetAllCar> getAll();
-    public GetByIdCar getById(int id);
+     void add(AddCar request);
+     void update(UpdateCar request,int id);
+     void delete(int id);
+     List<GetAllCar> getAll();
+     GetByIdCar getById(int id);
 
 
 }

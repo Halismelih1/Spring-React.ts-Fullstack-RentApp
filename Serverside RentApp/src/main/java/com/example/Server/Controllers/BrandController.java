@@ -22,7 +22,7 @@ public class BrandController {
         brandService.add(brand);
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     public void update(@RequestBody UpdateBrand brand,@PathVariable int id){
         brandService.update(brand,id);
     }

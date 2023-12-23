@@ -8,9 +8,9 @@ import com.example.Server.Dtos.Responses.Invoice.GetByIdInvoice;
 import java.util.List;
 
 public interface InvoiceService {
-    public void add(AddInvoice request);
-    public void update(UpdateInvoice request,int id);
-    public void delete(int id);
-    public List<GetAllInvoice> getAll();
-    public GetByIdInvoice getById(int id);
+     void add(AddInvoice request);
+     void update(UpdateInvoice request,int id);
+     void delete(int id);
+     List<GetAllInvoice> getAll();
+     GetByIdInvoice getById(int id);
 }

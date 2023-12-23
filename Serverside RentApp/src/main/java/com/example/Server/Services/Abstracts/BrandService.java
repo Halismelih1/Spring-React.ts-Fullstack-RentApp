@@ -8,9 +8,9 @@ import com.example.Server.Dtos.Responses.Brand.GetByIdBrand;
 import java.util.List;
 
 public interface BrandService {
-    public void add(AddBrand request);
-    public void update(UpdateBrand request,int id);
-    public void delete(int id);
+     void add(AddBrand request);
+     void update(UpdateBrand request,int id);
+     void delete(int id);
     List<GetAllBrand> getAll();
     GetByIdBrand getById(int id);
 }

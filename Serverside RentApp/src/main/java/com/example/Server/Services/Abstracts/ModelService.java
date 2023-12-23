@@ -8,9 +8,9 @@ import com.example.Server.Dtos.Responses.Model.GetByIdModel;
 import java.util.List;
 
 public interface ModelService {
-    public void add(AddModel request);
-    public void update(UpdateModel request,int id);
-    public void delete(int id);
-    public List<GetAllModel> getAll();
-    public GetByIdModel getById(int id);
+     void add(AddModel request);
+     void update(UpdateModel request,int id);
+     void delete(int id);
+     List<GetAllModel> getAll();
+     GetByIdModel getById(int id);
 }

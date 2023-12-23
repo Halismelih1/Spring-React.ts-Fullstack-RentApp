@@ -11,6 +11,9 @@ import com.example.Server.Repositories.CarRepository;
 import com.example.Server.Services.Abstracts.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,14 +23,14 @@ public class CarManager implements CarService {
     private final CarRepository carRepository;
     private final ModelMapperService modelMapperService;
     @Override
-    public void add(AddCar request) {
+    public void add(@RequestBody AddCar request) {
         Car car = modelMapperService.dtoToEntity().map(request,Car.class);
         carRepository.save(car);
 
     }
 
     @Override
-    public void update(UpdateCar request,int id) {
+    public void update(@RequestBody UpdateCar request,@PathVariable int id) {
         Car car = carRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, car);
         carRepository.save(car);
@@ -35,7 +38,7 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(@PathVariable int id) {
         carRepository.deleteById(id);
 
     }
@@ -50,7 +53,7 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public GetByIdCar getById(int id) {
+    public GetByIdCar getById(@PathVariable int id) {
         Car car = carRepository.findById(id).orElseThrow();
         GetByIdCar response = modelMapperService.entityToDto().map(car,GetByIdCar.class);
         return response;
