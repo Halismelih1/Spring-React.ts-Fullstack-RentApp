@@ -24,13 +24,13 @@ public class InvoiceManager implements InvoiceService {
 
 
     @Override
-    public void add(@RequestBody AddInvoice request) {
+    public void add(AddInvoice request) {
        Invoice invoice = modelMapperService.dtoToEntity().map(request, Invoice.class);
        invoiceRepository.save(invoice);
     }
 
     @Override
-    public void update(@RequestBody UpdateInvoice request,@PathVariable int id) {
+    public void update(UpdateInvoice request,int id) {
         Invoice invoice = invoiceRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request,invoice);
         invoiceRepository.save(invoice);
@@ -38,7 +38,7 @@ public class InvoiceManager implements InvoiceService {
     }
 
     @Override
-    public void delete(@PathVariable int id) {
+    public void delete( int id) {
         invoiceRepository.deleteById(id);
 
     }
@@ -51,7 +51,7 @@ public class InvoiceManager implements InvoiceService {
     }
 
     @Override
-    public GetByIdInvoice getById(@PathVariable int id) {
+    public GetByIdInvoice getById(int id) {
         Invoice invoice = invoiceRepository.findById(id).orElseThrow();
         GetByIdInvoice response = modelMapperService.entityToDto().map(invoice,GetByIdInvoice.class);
         return response;

@@ -1,6 +1,5 @@
 package com.example.Server.Controllers;
 
-import com.example.Server.Dtos.Requests.Brand.UpdateBrand;
 import com.example.Server.Dtos.Requests.Car.AddCar;
 import com.example.Server.Dtos.Requests.Car.UpdateCar;
 import com.example.Server.Dtos.Responses.Car.GetAllCar;

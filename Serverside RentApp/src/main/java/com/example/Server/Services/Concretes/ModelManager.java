@@ -24,13 +24,13 @@ public class ModelManager implements ModelService {
 
 
     @Override
-    public void add(@RequestBody AddModel request) {
+    public void add( AddModel request) {
        Model model = modelMapperService.dtoToEntity().map(request, Model.class);
        modelRepository.save(model);
     }
 
     @Override
-    public void update(@RequestBody UpdateModel request,@PathVariable int id) {
+    public void update( UpdateModel request, int id) {
         Model existingModel = modelRepository.findById(id).orElseThrow();
         Model updatedModel = modelMapperService.dtoToEntity().map(request, Model.class);
         updatedModel.setId(existingModel.getId());
@@ -39,7 +39,7 @@ public class ModelManager implements ModelService {
     }
 
     @Override
-    public void delete(@PathVariable int id) {
+    public void delete(int id) {
         modelRepository.deleteById(id);
 
     }
@@ -52,7 +52,7 @@ public class ModelManager implements ModelService {
     }
 
     @Override
-    public GetByIdModel getById(@PathVariable int id) {
+    public GetByIdModel getById( int id) {
         Model model = modelRepository.findById(id).orElseThrow();
         GetByIdModel response = modelMapperService.entityToDto().map(model,GetByIdModel.class);
         return response;
