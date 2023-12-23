@@ -8,6 +8,7 @@ import com.example.Server.Dtos.Responses.Brand.GetByIdBrand;
 import com.example.Server.Entities.Brand;
 import com.example.Server.Entities.Color;
 import com.example.Server.Repositories.BrandRepository;
+import com.example.Server.Rules.Brand.BrandBusinessRulesService;
 import com.example.Server.Services.Abstracts.BrandService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,11 @@ public class BrandManager implements BrandService {
 
     private final BrandRepository brandRepository;
     private final ModelMapperService modelMapperService;
+    private final BrandBusinessRulesService brandBusinessRulesService;
 
     @Override
     public void add( AddBrand request) {
-
+        brandBusinessRulesService.checkIfBrandNameExists(request.getName());
         Brand brand = modelMapperService.dtoToEntity().map(request,Brand.class);
         brandRepository.save(brand);
     }
