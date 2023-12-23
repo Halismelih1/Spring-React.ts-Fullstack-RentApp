@@ -23,8 +23,8 @@ public class BrandController {
     }
 
     @PutMapping
-    public void update(@RequestBody UpdateBrand brand){
-        brandService.update(brand);
+    public void update(@RequestBody UpdateBrand brand,@PathVariable int id){
+        brandService.update(brand,id);
     }
 
     @DeleteMapping("{id}")

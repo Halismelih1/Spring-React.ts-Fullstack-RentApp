@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 @Data
 public class UpdateInvoice {
-    private int id;
     private LocalDate createDate;
     private int rentalId;
 

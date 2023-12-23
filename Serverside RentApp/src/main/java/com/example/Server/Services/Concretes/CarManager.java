@@ -6,6 +6,7 @@ import com.example.Server.Dtos.Requests.Car.UpdateCar;
 import com.example.Server.Dtos.Responses.Car.GetAllCar;
 import com.example.Server.Dtos.Responses.Car.GetByIdCar;
 import com.example.Server.Entities.Car;
+import com.example.Server.Entities.Color;
 import com.example.Server.Repositories.CarRepository;
 import com.example.Server.Services.Abstracts.CarService;
 import lombok.AllArgsConstructor;
@@ -26,8 +27,9 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public void update(UpdateCar request) {
-        Car car = modelMapperService.dtoToEntity().map(request,Car.class);
+    public void update(UpdateCar request,int id) {
+        Car car = carRepository.findById(id).orElseThrow();
+        modelMapperService.dtoToEntity().map(request, car);
         carRepository.save(car);
 
     }

@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Data
 public class UpdateCar {
-    private int id;
     private int kilometer;
     private String plate;
     private int year;

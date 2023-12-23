@@ -2,11 +2,11 @@ package com.example.Server.Services.Concretes;
 
 import com.example.Server.Core.Mapper.ModelMapperService;
 import com.example.Server.Dtos.Requests.Brand.AddBrand;
-import com.example.Server.Dtos.Requests.Brand.DeleteBrand;
 import com.example.Server.Dtos.Requests.Brand.UpdateBrand;
 import com.example.Server.Dtos.Responses.Brand.GetAllBrand;
 import com.example.Server.Dtos.Responses.Brand.GetByIdBrand;
 import com.example.Server.Entities.Brand;
+import com.example.Server.Entities.Color;
 import com.example.Server.Repositories.BrandRepository;
 import com.example.Server.Services.Abstracts.BrandService;
 import lombok.AllArgsConstructor;
@@ -29,9 +29,10 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public void update(UpdateBrand request) {
+    public void update(UpdateBrand request,int id) {
 
-        Brand brand = modelMapperService.dtoToEntity().map(request,Brand.class);
+        Brand brand = brandRepository.findById(id).orElseThrow();
+        modelMapperService.dtoToEntity().map(request, brand);
         brandRepository.save(brand);
 
     }

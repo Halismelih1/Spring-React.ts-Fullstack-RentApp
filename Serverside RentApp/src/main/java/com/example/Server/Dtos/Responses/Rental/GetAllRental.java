@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class GetAllRental {
     private int id;
     private LocalDate endDate;
-    private int kilometer;
+    private int endKilometer;
     private LocalDate returnDate;
     private LocalDate startDate;
     private int startKilometer;

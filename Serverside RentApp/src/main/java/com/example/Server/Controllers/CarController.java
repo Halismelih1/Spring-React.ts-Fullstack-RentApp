@@ -24,12 +24,12 @@ public class CarController {
     }
 
     @PutMapping("{id}")
-    public void update(@RequestBody UpdateCar request){
-        carService.update(request);
+    public void update(@RequestBody UpdateCar request,@PathVariable int id){
+        carService.update(request,id);
     }
 
     @DeleteMapping("{id}")
-    public void delete(int id){
+    public void delete(@PathVariable int id){
         carService.delete(id);
     }
 
@@ -40,7 +40,7 @@ public class CarController {
     }
 
     @GetMapping("{id}")
-    public GetByIdCar getById(int id){
+    public GetByIdCar getById(@PathVariable int id){
         return carService.getById(id);
     }
 }

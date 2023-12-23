@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Data
 public class AddRental {
     private LocalDate endDate;
-    private int kilometer;
+    private int endKilometer;
     private LocalDate returnDate;
     private LocalDate startDate;
     private int startKilometer;
