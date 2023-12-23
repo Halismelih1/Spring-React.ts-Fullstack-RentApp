@@ -9,7 +9,7 @@ public class UpdateCar {
     private int id;
     private int kilometer;
     private String plate;
-    private LocalDate year;
+    private int year;
     private Double dailyPrice;
     private int colorId;
     private int modelId;

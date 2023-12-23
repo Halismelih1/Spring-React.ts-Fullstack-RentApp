@@ -11,7 +11,7 @@ public class GetByIdCar {
     private int id;
     private int kilometer;
     private String plate;
-    private LocalDate year;
+    private int year;
     private Double dailyPrice;
     private GetByIdColor color;
     private GetByIdModel model;
