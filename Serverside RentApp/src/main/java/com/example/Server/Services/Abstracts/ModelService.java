@@ -13,4 +13,6 @@ public interface ModelService {
      void delete(int id);
      List<GetAllModel> getAll();
      GetByIdModel getById(int id);
+     boolean existsById(int id);
+
 }

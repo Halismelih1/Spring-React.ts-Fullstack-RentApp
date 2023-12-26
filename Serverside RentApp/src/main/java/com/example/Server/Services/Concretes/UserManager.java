@@ -3,11 +3,9 @@ package com.example.Server.Services.Concretes;
 import com.example.Server.Core.Mapper.ModelMapperService;
 import com.example.Server.Dtos.Requests.User.AddUser;
 import com.example.Server.Dtos.Requests.User.UpdateUser;
-import com.example.Server.Dtos.Responses.Model.GetByIdModel;
 import com.example.Server.Dtos.Responses.User.GetAllUser;
 import com.example.Server.Dtos.Responses.User.GetByIdUser;
-import com.example.Server.Entities.Model;
-import com.example.Server.Entities.User;
+import com.example.Server.Entities.Concretes.User;
 import com.example.Server.Repositories.UserRepository;
 import com.example.Server.Services.Abstracts.UserService;
 import lombok.AllArgsConstructor;
@@ -55,5 +53,10 @@ public class UserManager implements UserService {
         User user = userRepository.findById(id).orElseThrow();
         GetByIdUser response = modelMapperService.entityToDto().map(user,GetByIdUser.class);
         return response;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return userRepository.existsById(id);
     }
 }

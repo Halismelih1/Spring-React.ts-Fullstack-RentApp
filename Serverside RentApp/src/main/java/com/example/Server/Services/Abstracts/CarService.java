@@ -12,6 +12,8 @@ public interface CarService {
      void delete(int id);
      List<GetAllCar> getAll();
      GetByIdCar getById(int id);
+     boolean existsById(int id);
+
 
 
 }

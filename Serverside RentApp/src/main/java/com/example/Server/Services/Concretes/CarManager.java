@@ -5,14 +5,11 @@ import com.example.Server.Dtos.Requests.Car.AddCar;
 import com.example.Server.Dtos.Requests.Car.UpdateCar;
 import com.example.Server.Dtos.Responses.Car.GetAllCar;
 import com.example.Server.Dtos.Responses.Car.GetByIdCar;
-import com.example.Server.Entities.Car;
-import com.example.Server.Entities.Color;
+import com.example.Server.Entities.Concretes.Car;
 import com.example.Server.Repositories.CarRepository;
 import com.example.Server.Services.Abstracts.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -57,5 +54,10 @@ public class CarManager implements CarService {
         Car car = carRepository.findById(id).orElseThrow();
         GetByIdCar response = modelMapperService.entityToDto().map(car,GetByIdCar.class);
         return response;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return carRepository.existsById(id);
     }
 }

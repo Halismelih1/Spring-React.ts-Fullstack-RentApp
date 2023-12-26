@@ -5,14 +5,11 @@ import com.example.Server.Dtos.Requests.Color.AddColor;
 import com.example.Server.Dtos.Requests.Color.UpdateColor;
 import com.example.Server.Dtos.Responses.Color.GetAllColor;
 import com.example.Server.Dtos.Responses.Color.GetByIdColor;
-import com.example.Server.Entities.Color;
+import com.example.Server.Entities.Concretes.Color;
 import com.example.Server.Repositories.ColorRepository;
 import com.example.Server.Services.Abstracts.ColorService;
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -53,5 +50,10 @@ public class ColorManager implements ColorService {
         Color color = colorRepository.findById(id).orElseThrow();
         GetByIdColor response = modelMapperService.entityToDto().map(color,GetByIdColor.class);
         return response;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return colorRepository.existsById(id);
     }
 }

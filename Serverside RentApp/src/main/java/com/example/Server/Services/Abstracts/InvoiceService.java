@@ -13,4 +13,6 @@ public interface InvoiceService {
      void delete(int id);
      List<GetAllInvoice> getAll();
      GetByIdInvoice getById(int id);
+     boolean existsById(int id);
+
 }

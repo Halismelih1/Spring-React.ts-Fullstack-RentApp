@@ -5,13 +5,11 @@ import com.example.Server.Dtos.Requests.Invoice.AddInvoice;
 import com.example.Server.Dtos.Requests.Invoice.UpdateInvoice;
 import com.example.Server.Dtos.Responses.Invoice.GetAllInvoice;
 import com.example.Server.Dtos.Responses.Invoice.GetByIdInvoice;
-import com.example.Server.Entities.Invoice;
+import com.example.Server.Entities.Concretes.Invoice;
 import com.example.Server.Repositories.InvoiceRepository;
 import com.example.Server.Services.Abstracts.InvoiceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -55,5 +53,10 @@ public class InvoiceManager implements InvoiceService {
         Invoice invoice = invoiceRepository.findById(id).orElseThrow();
         GetByIdInvoice response = modelMapperService.entityToDto().map(invoice,GetByIdInvoice.class);
         return response;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return invoiceRepository.existsById(id);
     }
 }

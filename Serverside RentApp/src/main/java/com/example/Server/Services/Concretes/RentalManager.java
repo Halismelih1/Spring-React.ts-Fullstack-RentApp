@@ -5,8 +5,7 @@ import com.example.Server.Dtos.Requests.Rental.AddRental;
 import com.example.Server.Dtos.Requests.Rental.UpdateRental;
 import com.example.Server.Dtos.Responses.Rental.GetAllRental;
 import com.example.Server.Dtos.Responses.Rental.GetByIdRental;
-import com.example.Server.Entities.Model;
-import com.example.Server.Entities.Rental;
+import com.example.Server.Entities.Concretes.Rental;
 import com.example.Server.Repositories.RentalRepository;
 import com.example.Server.Services.Abstracts.RentalService;
 import lombok.AllArgsConstructor;
@@ -53,5 +52,10 @@ public class RentalManager implements RentalService {
         Rental rental = rentalRepository.findById(id).orElseThrow();
         GetByIdRental response = modelMapperService.entityToDto().map(rental,GetByIdRental.class);
         return response;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return rentalRepository.existsById(id);
     }
 }

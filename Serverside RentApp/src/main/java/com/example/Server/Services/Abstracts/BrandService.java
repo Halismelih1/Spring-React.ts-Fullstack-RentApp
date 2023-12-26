@@ -13,4 +13,5 @@ public interface BrandService {
      void delete(int id);
     List<GetAllBrand> getAll();
     GetByIdBrand getById(int id);
+    boolean existsById(int id);
 }

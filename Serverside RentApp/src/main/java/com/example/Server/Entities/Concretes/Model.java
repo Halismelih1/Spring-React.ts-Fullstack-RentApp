@@ -1,6 +1,6 @@
-package com.example.Server.Entities;
+package com.example.Server.Entities.Concretes;
 
-import com.example.Server.Dtos.Requests.Brand.AddBrand;
+import com.example.Server.Entities.Abstracts.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,12 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "models")
-public class Model {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+public class Model extends BaseEntity {
 
     @Column(name = "name")
     private String name;

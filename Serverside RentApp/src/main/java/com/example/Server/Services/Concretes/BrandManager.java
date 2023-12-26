@@ -5,15 +5,12 @@ import com.example.Server.Dtos.Requests.Brand.AddBrand;
 import com.example.Server.Dtos.Requests.Brand.UpdateBrand;
 import com.example.Server.Dtos.Responses.Brand.GetAllBrand;
 import com.example.Server.Dtos.Responses.Brand.GetByIdBrand;
-import com.example.Server.Entities.Brand;
-import com.example.Server.Entities.Color;
+import com.example.Server.Entities.Concretes.Brand;
 import com.example.Server.Repositories.BrandRepository;
 import com.example.Server.Rules.Brand.BrandBusinessRulesService;
 import com.example.Server.Services.Abstracts.BrandService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -34,7 +31,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public void update(UpdateBrand request,int id) {
-
+        brandBusinessRulesService.checkIfByIdExists(id);
         Brand brand = brandRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, brand);
         brandRepository.save(brand);
@@ -59,5 +56,10 @@ public class BrandManager implements BrandService {
         Brand brand = brandRepository.findById(id).orElseThrow();
         GetByIdBrand response = modelMapperService.entityToDto().map(brand, GetByIdBrand.class);
         return response;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return brandRepository.existsById(id);
     }
 }
