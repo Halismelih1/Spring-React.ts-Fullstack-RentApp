@@ -7,6 +7,7 @@ import com.example.Server.Dtos.Responses.Car.GetAllCar;
 import com.example.Server.Dtos.Responses.Car.GetByIdCar;
 import com.example.Server.Entities.Concretes.Car;
 import com.example.Server.Repositories.CarRepository;
+import com.example.Server.Rules.Car.CarBusinessRulesService;
 import com.example.Server.Services.Abstracts.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class CarManager implements CarService {
 
     private final CarRepository carRepository;
     private final ModelMapperService modelMapperService;
+    private final CarBusinessRulesService carBusinessRulesService;
     @Override
     public void add( AddCar request) {
         Car car = modelMapperService.dtoToEntity().map(request,Car.class);
@@ -28,6 +30,9 @@ public class CarManager implements CarService {
 
     @Override
     public void update(UpdateCar request, int id) {
+        //Rules
+        carBusinessRulesService.checkIfByIdExists(id);
+
         Car car = carRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, car);
         carRepository.save(car);
