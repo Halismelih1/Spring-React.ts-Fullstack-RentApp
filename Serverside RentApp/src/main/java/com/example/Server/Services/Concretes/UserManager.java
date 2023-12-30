@@ -55,8 +55,5 @@ public class UserManager implements UserService {
         return response;
     }
 
-    @Override
-    public boolean existsById(int id) {
-        return userRepository.existsById(id);
-    }
+
 }

@@ -15,4 +15,13 @@ public class CarBusinessRulesManager implements CarBusinessRulesService{
             throw new IllegalStateException("carId is not found !");
         }
     }
+
+    @Override
+    public void checkIfByPlateExists(String plate) {
+        if (carRepository.existsByPlate(plate.trim())){
+            throw new IllegalStateException("Plate is already exists!");
+
+        }
+    }
+
 }

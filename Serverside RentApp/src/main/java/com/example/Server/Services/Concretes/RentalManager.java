@@ -54,8 +54,5 @@ public class RentalManager implements RentalService {
         return response;
     }
 
-    @Override
-    public boolean existsById(int id) {
-        return rentalRepository.existsById(id);
-    }
+
 }

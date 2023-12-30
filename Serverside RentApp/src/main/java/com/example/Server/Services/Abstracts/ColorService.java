@@ -13,7 +13,6 @@ public interface ColorService {
      void delete(int id);
      List<GetAllColor> getAll();
      GetByIdColor getById(int id);
-     boolean existsById(int id);
 
 
 

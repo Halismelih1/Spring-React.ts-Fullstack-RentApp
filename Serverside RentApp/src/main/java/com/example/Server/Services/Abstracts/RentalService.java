@@ -13,6 +13,5 @@ public interface RentalService {
      void delete(int id);
      List<GetAllRental> getAll();
      GetByIdRental getById(int id);
-     boolean existsById(int id);
 
 }

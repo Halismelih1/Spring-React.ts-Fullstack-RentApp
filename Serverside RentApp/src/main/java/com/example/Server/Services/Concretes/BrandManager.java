@@ -32,6 +32,7 @@ public class BrandManager implements BrandService {
     @Override
     public void update(UpdateBrand request,int id) {
         brandBusinessRulesService.checkIfByIdExists(id);
+        brandBusinessRulesService.checkIfBrandNameExists(request.getName());
         Brand brand = brandRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, brand);
         brandRepository.save(brand);
@@ -40,6 +41,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public void delete(int id) {
+        brandBusinessRulesService.checkIfByIdExists(id);
         brandRepository.deleteById(id);
     }
 
@@ -53,13 +55,11 @@ public class BrandManager implements BrandService {
 
     @Override
     public GetByIdBrand getById( int id) {
+        brandBusinessRulesService.checkIfByIdExists(id);
         Brand brand = brandRepository.findById(id).orElseThrow();
         GetByIdBrand response = modelMapperService.entityToDto().map(brand, GetByIdBrand.class);
         return response;
     }
 
-    @Override
-    public boolean existsById(int id) {
-        return brandRepository.existsById(id);
-    }
+
 }

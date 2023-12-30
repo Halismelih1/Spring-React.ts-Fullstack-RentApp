@@ -21,9 +21,11 @@ public class CarManager implements CarService {
     private final CarRepository carRepository;
     private final ModelMapperService modelMapperService;
     private final CarBusinessRulesService carBusinessRulesService;
+
     @Override
-    public void add( AddCar request) {
-        Car car = modelMapperService.dtoToEntity().map(request,Car.class);
+    public void add(AddCar request) {
+        carBusinessRulesService.checkIfByPlateExists(request.getPlate().trim());
+        Car car = modelMapperService.dtoToEntity().map(request, Car.class);
         carRepository.save(car);
 
     }
@@ -32,7 +34,7 @@ public class CarManager implements CarService {
     public void update(UpdateCar request, int id) {
         //Rules
         carBusinessRulesService.checkIfByIdExists(id);
-
+        carBusinessRulesService.checkIfByPlateExists(request.getPlate());
         Car car = carRepository.findById(id).orElseThrow();
         modelMapperService.dtoToEntity().map(request, car);
         carRepository.save(car);
@@ -40,7 +42,7 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public void delete( int id) {
+    public void delete(int id) {
         carRepository.deleteById(id);
 
     }
@@ -50,19 +52,18 @@ public class CarManager implements CarService {
         List<Car> cars = carRepository.findAll();
         List<GetAllCar> response = cars.stream().map
                 (car -> modelMapperService.entityToDto()
-                        .map(car,GetAllCar.class)).toList();
+                        .map(car, GetAllCar.class)).toList();
         return response;
     }
 
     @Override
     public GetByIdCar getById(int id) {
+        carBusinessRulesService.checkIfByIdExists(id);
         Car car = carRepository.findById(id).orElseThrow();
-        GetByIdCar response = modelMapperService.entityToDto().map(car,GetByIdCar.class);
+        GetByIdCar response = modelMapperService.entityToDto().map(car, GetByIdCar.class);
         return response;
     }
 
-    @Override
-    public boolean existsById(int id) {
-        return carRepository.existsById(id);
-    }
+
+
 }

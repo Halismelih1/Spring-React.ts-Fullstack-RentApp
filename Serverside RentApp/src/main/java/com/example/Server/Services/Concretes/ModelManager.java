@@ -60,8 +60,5 @@ public class ModelManager implements ModelService {
         return response;
     }
 
-    @Override
-    public boolean existsById(int id) {
-        return modelRepository.existsById(id);
-    }
+
 }
