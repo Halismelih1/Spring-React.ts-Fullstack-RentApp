@@ -14,10 +14,11 @@ public abstract class BaseEntity {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "created_date")
+    @Column(name = "created_date", updatable = false)
+    //@Temporal(TemporalType.DATE) //Zamanı Time ve Date şeklinde ayrı ayrı almak için ileride kullanılabilir.
     private Timestamp createdDate;
 
-    @Column(name = "updated_date",nullable = true)
+    @Column(name = "updated_date")
     private Timestamp updatedDate;
 
     @PrePersist
