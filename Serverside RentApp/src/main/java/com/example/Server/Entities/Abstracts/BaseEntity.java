@@ -2,7 +2,7 @@ package com.example.Server.Entities.Abstracts;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
+import jakarta.persistence.MappedSuperclass;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 

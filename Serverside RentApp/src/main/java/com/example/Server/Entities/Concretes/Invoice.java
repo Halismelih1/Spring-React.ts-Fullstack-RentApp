@@ -4,7 +4,6 @@ import com.example.Server.Entities.Abstracts.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
 
 @Entity
 @Data

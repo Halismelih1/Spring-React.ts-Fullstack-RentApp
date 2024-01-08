@@ -4,6 +4,7 @@ import com.example.Server.Dtos.Requests.User.AddUser;
 import com.example.Server.Dtos.Requests.User.UpdateUser;
 import com.example.Server.Dtos.Responses.User.GetAllUser;
 import com.example.Server.Dtos.Responses.User.GetByIdUser;
+import com.example.Server.Repositories.UserRepository;
 import com.example.Server.Services.Abstracts.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 
 
         private final UserService userService;
+        private final UserRepository userRepository;
 
         @PostMapping
         public void add(@RequestBody AddUser request){
@@ -43,5 +45,7 @@ import java.util.List;
         public GetByIdUser getById(@PathVariable int id){
             return userService.getById(id);
         }
+
+
     }
 

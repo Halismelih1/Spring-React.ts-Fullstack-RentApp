@@ -8,17 +8,26 @@ import com.example.Server.Dtos.Responses.User.GetByIdUser;
 import com.example.Server.Entities.Concretes.User;
 import com.example.Server.Repositories.UserRepository;
 import com.example.Server.Services.Abstracts.UserService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Slf4j
+@Transactional
 @AllArgsConstructor
 @Service
 public class UserManager implements UserService {
 
-    private final UserRepository userRepository;
     private final ModelMapperService modelMapperService;
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void add(AddUser request) {
@@ -41,6 +50,7 @@ public class UserManager implements UserService {
         userRepository.deleteById(id);
     }
 
+
     @Override
     public List<GetAllUser> getAll() {
         List <User> users = userRepository.findAll();
@@ -54,6 +64,7 @@ public class UserManager implements UserService {
         GetByIdUser response = modelMapperService.entityToDto().map(user,GetByIdUser.class);
         return response;
     }
+
 
 
 }

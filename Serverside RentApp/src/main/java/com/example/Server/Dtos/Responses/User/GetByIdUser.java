@@ -8,5 +8,6 @@ public class GetByIdUser {
     private String name;
     private String surname;
     private String email;
+    private String password;
     private LocalDate birthDate;
 }

@@ -4,6 +4,7 @@ import com.example.Server.Dtos.Requests.User.AddUser;
 import com.example.Server.Dtos.Requests.User.UpdateUser;
 import com.example.Server.Dtos.Responses.User.GetAllUser;
 import com.example.Server.Dtos.Responses.User.GetByIdUser;
+import com.example.Server.Entities.Concretes.User;
 
 import java.util.List;
 

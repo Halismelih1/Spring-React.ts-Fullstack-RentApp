@@ -2,9 +2,8 @@ package com.example.Server.Entities.Concretes;
 
 import com.example.Server.Entities.Abstracts.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.Data;
-
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
