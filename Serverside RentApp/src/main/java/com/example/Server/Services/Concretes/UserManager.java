@@ -8,30 +8,36 @@ import com.example.Server.Dtos.Responses.User.GetByIdUser;
 import com.example.Server.Entities.Concretes.User;
 import com.example.Server.Repositories.UserRepository;
 import com.example.Server.Services.Abstracts.UserService;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Slf4j
-@Transactional
+
+
 @AllArgsConstructor
 @Service
 public class UserManager implements UserService {
 
     private final ModelMapperService modelMapperService;
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void add(AddUser request) {
-        User user = modelMapperService.dtoToEntity().map(request,User.class);
+        //User user = modelMapperService.dtoToEntity().map(request,User.class);
+        User user = User.builder()
+                .username(request.getUsername())
+                .surname(request.getSurname())
+                .email(request.getEmail())
+                .authorities(request.getRoles())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .birthDate(request.getBirthDate())
+                .build();
         userRepository.save(user);
 
     }
@@ -67,4 +73,9 @@ public class UserManager implements UserService {
 
 
 
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No user found!"));
+    }
 }

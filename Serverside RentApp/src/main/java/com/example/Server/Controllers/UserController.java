@@ -7,6 +7,7 @@ import com.example.Server.Dtos.Responses.User.GetByIdUser;
 import com.example.Server.Repositories.UserRepository;
 import com.example.Server.Services.Abstracts.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
